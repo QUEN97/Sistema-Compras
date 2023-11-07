@@ -11,7 +11,8 @@ class SolicitudController extends Controller
     public function index()
     {
         $this->valid = Auth::user()->permiso->panels->where('id', 1)->first();
-            return view('modules.solicitudes.index', ['val' => $this->valid]);
+        $trashed = Solicitud::onlyTrashed()->count();
+            return view('modules.solicitudes.index', ['val' => $this->valid, 'trashed' => $trashed]);
     }
     // public function destroy(Solicitud $solicitud)
     // {

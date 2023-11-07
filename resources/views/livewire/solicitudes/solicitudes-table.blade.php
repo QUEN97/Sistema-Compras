@@ -7,10 +7,24 @@
                     @if (Auth::user()->permiso_id == 1 || Auth::user()->permiso_id == 4)
                     <div class="relative mr-4">
                         <label for="filter" class="sr-only">Filtrar por estacion</label>
-                        <select name="filter" id="filter" class="block w-full p-3 pl-10 text-sm border-gray-200 rounded-md focus:border-gray-500 focus:ring-gray-500 dark:bg-dark-eval-0 dark:border-gray-700 dark:text-black">
-                            <option value="">Todas las estaciones</option>
+                        <select name="filter" id="filter" class="block w-full p-3 pl-10 text-sm border-gray-200 rounded-md focus:border-gray-500 focus:ring-gray-500 dark:bg-dark-eval-0 dark:border-gray-700 dark:text-black" style="width: 220px">
+                            <option value="">Estaciones</option>
                             @foreach($estas as $esta)
                             <option value="{{ $esta->id }}" {{ request('filter') == $esta->id ? 'selected' : '' }}>{{ $esta->name }}</option>
+                            @endforeach
+                        </select>
+                        <div class="absolute top-0 left-0 mt-3 ml-3">
+                            <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6 8H2a2 2 0 00-2 2v12a2 2 0 002 2h4a2 2 0 002-2V10a2 2 0 00-2-2zm0 0V4a2 2 0 012-2h4a2 2 0 012 2v4m-6 0h12m-6 0a2 2 0 00-2 2v8a2 2 0 002 2h4a2 2 0 002-2v-8a2 2 0 00-2-2h-4a2 2 0 00-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="relative mr-4">
+                        <label for="filterc" class="sr-only">Filtrar por categoria</label>
+                        <select name="filterc" id="filterc" class="block w-full p-3 pl-10 text-sm border-gray-200 rounded-md focus:border-gray-500 focus:ring-gray-500 dark:bg-dark-eval-0 dark:border-gray-700 dark:text-black" style="width: 220px">
+                            <option value="">Categorias</option>
+                            @foreach($cates as $cate)
+                            <option value="{{ $cate->id }}" {{ request('filterc') == $cate->id ? 'selected' : '' }}>{{ $cate->name }}</option>
                             @endforeach
                         </select>
                         <div class="absolute top-0 left-0 mt-3 ml-3">
@@ -22,7 +36,7 @@
                     @endif
                     <div class="relative">
                         <label for="search" class="sr-only">Buscar</label>
-                        <input type="text" name="search" id="search" class="block w-full p-3 pl-10 text-sm border-gray-200 rounded-md focus:border-gray-500 focus:ring-gray-500 dark:bg-dark-eval-0 dark:border-gray-700 dark:text-black" placeholder="Buscar..." value="{{ request('search') }}">
+                        <input type="text" name="search" id="search" class="block w-full p-3 pl-10 text-sm border-gray-200 rounded-md focus:border-gray-500 focus:ring-gray-500 dark:bg-dark-eval-0 dark:border-gray-700 dark:text-black" placeholder="Buscar..." value="{{ request('search') }}" style="width:220px">
                         <div class="absolute top-0 left-0 mt-3 ml-3">
                             <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16.5 9a6.5 6.5 0 10-13 0 6.5 6.5 0 0013 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
@@ -33,7 +47,7 @@
                     <button type="submit" class="ml-4 py-2 px-4 bg-black text-white rounded-md hover:bg-gray-600">Buscar</button>
                 </div>
             </form>
-            <div class="mr-2">
+            {{-- <div class="mr-2">
                 <a class="inline-flex items-center px-3 py-2.5 text-sm font-medium text-center float-right text-white bg-gray-400 rounded-lg hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-dark-eval-3"
                     href="{{ route('solicitudes.trashed') }}">
                     Eliminados
@@ -42,7 +56,7 @@
                         {{ $trashed }}
                     </span>
                 </a>
-            </div>
+            </div> --}}
         </div>
         {{-- @if (Auth::user()->permiso_id != 2 && Auth::user()->permiso_id != 3) --}}
         <table
@@ -270,7 +284,7 @@
                     @empty
                         <tr>
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
-                                colspan="7">
+                                colspan="9">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Sin
                                     registros</span>
@@ -441,7 +455,7 @@
                     @empty
                         <tr>
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
-                                colspan="7">
+                                colspan="9">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Sin
                                     registros</span>
@@ -597,7 +611,7 @@
                     @empty
                         <tr>
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
-                                colspan="7">
+                                colspan="9">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Sin
                                     registros</span>
@@ -753,7 +767,7 @@
                     @empty
                         <tr>
                             <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
-                                colspan="7">
+                                colspan="9">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Sin
                                     registros</span>
