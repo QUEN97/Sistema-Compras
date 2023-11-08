@@ -24,7 +24,7 @@ class SolicitudExtraEdit extends Component
     public $EditSolicitud;
     public $solicitud_id;
     public $estacion, $producto, $cantidad, $produs,$sugerencias, $solicitudEs,$listEX=[], 
-    $productsext, $tipo, $producto_extraordinario;
+    $productsext, $tipo, $producto_extraordinario,$razon_social,$razon,$motivo;
     public $inputs = [];
     public $i = 1;
     public $subtotal=0,$iva=0,$isr=0;
@@ -75,6 +75,12 @@ class SolicitudExtraEdit extends Component
         $this->solicitud_id = $id;
         $this->estacion = $solici->estacion_id;
 
+        $this->razon_social = $solici->razon_social;
+        $this->motivo = $solici->motivo;
+        $this->subtotal = $solici->total;
+        $this->iva = $solici->iva;
+        $this->isr = $solici->isr;
+
         $this->EditSolicitud = true;
         
     }
@@ -122,6 +128,8 @@ class SolicitudExtraEdit extends Component
         $solici->total=$this->subtotal;//el total es el Subtotal(se hizo esto por cambios requeridos por Lupita)
         $solici->iva=$this->subtotal*($this->iva/100);
         $solici->isr=$this->subtotal*($this->isr/100);
+        $solici->motivo = $this->motivo;
+        $solici->razon_social = $this->razon_social;
         $solici->save();
         //dd($this->listEX);
         foreach($this->listEX as $ex){
@@ -176,12 +184,21 @@ class SolicitudExtraEdit extends Component
 
         $this->est = Estacion::where('id', $solicitud->estacion_id)->first();
 
+        $proveedorData = ProductoExtraordinario::where('solicitud_id', $solicitud->id)
+            ->join('proveedors', 'producto_extraordinario.proveedor_id', '=', 'proveedors.id')
+            ->select('proveedors.*')
+            ->first();
+        $cateCompra = Solicitud::where('solicituds.id', $solicitud->id)
+            ->join('categorias', 'solicituds.categoria_id', '=', 'categorias.id')
+            ->select('categorias.*')
+            ->first();
+
         if (Auth::user()->permiso_id == 2) {
             $this->nombrePDF = $fecha . '_' . $this->est->name . '_' . $supervisor . '_' . rand(10, 100000) . '.pdf';
         } elseif (Auth::user()->permiso_id == 3) {
             $this->nombrePDF = $fecha . '_' . $this->est->name . '_' . $gerente . '_' . rand(10, 100000) . '.pdf';
         } elseif (Auth::user()->permiso_id != 2 && Auth::user()->permiso_id != 3) {
-            $this->nombrePDF = $fecha . '_' . $this->est->name . '_' . $this->est->supervisor->name . '_' . rand(10, 100000) . '.pdf';
+            $this->nombrePDF = $fecha . '_' . $this->est->name . '_' . mb_strtoupper($cateCompra->name) . '_' . rand(10, 100000) . '.pdf';
         }
 
         $this->itsTot = ProductoExtraordinario::where('solicitud_id', $solicitud->id)->where('flag_trash', 0)->sum('total');
@@ -197,7 +214,9 @@ class SolicitudExtraEdit extends Component
             'totalSoli' => number_format($solicitud->total,2) ,
             'iva'=> number_format($solicitud->iva,2),
             'isr'=> number_format($solicitud->isr,2), 
-            'total'=>($solicitud->total+$solicitud->iva)-$solicitud->isr
+            'total'=>($solicitud->total+$solicitud->iva)-$solicitud->isr,
+            'proveedor' => $proveedorData,
+            'razonsocial' => $this->razon_social,
         ];
 
         $cont = Pdf::loadView('livewire.solicitudes.solicitud-ext-pdf', $data)->output();

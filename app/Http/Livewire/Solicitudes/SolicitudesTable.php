@@ -139,10 +139,12 @@ class SolicitudesTable extends Component
             });
             if ($request->has('filter') && $request->input('filter') != '') {
                 $filterSoli = $request->input('filter');
+                //dd($filterSoli);
                 $query->where('solicituds.estacion_id', $filterSoli);
             }
             if ($request->has('filterc') && $request->input('filterc') != '') {
                 $filterCat = $request->input('filterc');
+                //dd($filterCat);
                 $query->where('solicituds.categoria_id', $filterCat);
             }
         }

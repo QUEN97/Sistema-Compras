@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string('pdf');
             $table->string('status')->default('Solicitado al Supervisor');
             $table->string('tipo_compra', 15);
+            $table->string('razon_social')->nullable();
             $table->string('motivo');
+            $table->float('total',12,2)->default(0);
+            $table->float('iva',12,2)->default(0);
+            $table->float('isr',12,2)->default(0);
             $table->softDeletes();
             $table->timestamps();
 

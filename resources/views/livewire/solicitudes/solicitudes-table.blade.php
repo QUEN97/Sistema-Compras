@@ -64,39 +64,39 @@
             <thead class="bg-gray-50">
                 <tr>
                     <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                         Id</th>
                     <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                         Estación</th>
                     <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                         Tipo Compra</th>
 					<th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                         Categoría Compra</th>
                     <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                         Productos Pedidos</th>
                     <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                         Status</th>
                     <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                         Fecha solicitado </th>
                     <th
-                        class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
-                        Ultima actualización</th>
+                        class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                        Actualizado</th>
                     @if ($superSolis->isnotEmpty() || $gerenSolis->isnotEmpty() || Auth::user()->permiso_id != 1)
                         @if ($valid->pivot->ed == 1 || $valid->pivot->de == 1 || $valid->pivot->vermas == 1)
                             <th
-                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                                class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                                 Opciones</th>
                         @endif
                     @else
                         @if ($valid->pivot->ed == 1 || $valid->pivot->de == 1 || $valid->pivot->vermas == 1)
                             <th
-                                class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
+                                class="p-1 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell dark:bg-dark-eval-2 dark:text-gray-300 dark:border-gray-700">
                                 Opciones</th>
                         @endif
                     @endif
@@ -107,7 +107,7 @@
                     @forelse ($todoSolis as $soli)
                         <tr>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Id</span>
                                 <div class="text-sm">
@@ -115,33 +115,33 @@
                                 </div>
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                 {{ $soli->estacion }}
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                 {{ $soli->tipo_compra }}
                             </td>
 							<td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                 {{ $soli->categoria->name }}
                             </td>
                             @if ($soli->tipo_compra == 'Ordinario')
                                 <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                    class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                     {{ $soli->totprod }}
                                 </td>
                             @else
                                 <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                    class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                     {{ $soli->totprodext }}
@@ -149,7 +149,7 @@
                             @endif
 
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
                                 @if ($soli->status == 'Solicitado a Compras')
@@ -180,20 +180,20 @@
                                 @endif
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Fecha</span>
                                 {{ $soli->fecha}}
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Fecha</span>
                                 {{ $soli->updated_at}}
                             </td>
                             @if ($valid->pivot->ed == 1 || $valid->pivot->de == 1 || $valid->pivot->vermas == 1)
                                 <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                    class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Opciones</span>
                                     <div  style="display: flex; justify-content: center;">
@@ -283,7 +283,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
+                            <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
                                 colspan="9">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Sin
@@ -296,7 +296,7 @@
                     @forelse ($compraSolis as $soli)
                         <tr>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Id</span>
                                 <div class="text-sm">
@@ -305,40 +305,40 @@
                                 </div>
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                 {{ $soli->estacion }}
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                 {{ $soli->tipo_compra }}
                             </td>
 							<td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                 {{ $soli->categoria->name }}
                             </td>
                             @if ($soli->tipo_compra == 'Ordinario')
                                 <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                    class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                     {{ $soli->totprod }}
                                 </td>
                             @else
                                 <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-gray-400  dark:border-gray-700">
+                                    class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-gray-400  dark:border-gray-700">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Email</span>
                                     {{ $soli->totprodext }}
                                 </td>
                             @endif
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-gray-400  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-gray-400  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Status</span>
                                 @if ($soli->status == 'Solicitado a Compras')
@@ -369,20 +369,20 @@
                                 @endif
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-dark  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-dark  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Fecha</span>
                                 {{$soli->fecha }}
                             </td>
                             <td
-                                class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
+                                class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static dark:text-black  dark:border-gray-700">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Fecha</span>
                                 {{ $soli->updated_at}}
                             </td>
                             @if ($valid->pivot->ed == 1 || $valid->pivot->de == 1 || $valid->pivot->vermas == 1)
                                 <td
-                                    class="w-full lg:w-auto p-3 text-gray-800 border border-b block lg:table-cell relative lg:static dark:text-gray-400  dark:border-gray-700">
+                                    class="w-full lg:w-auto p-1 text-gray-800 border border-b block lg:table-cell relative lg:static dark:text-gray-400  dark:border-gray-700">
                                     <span
                                         class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Opciones</span>
                                     <div style="display: flex; justify-content: center;">
@@ -425,12 +425,12 @@
                                                     $soli->status != 'Solicitud Aprobada' &&
                                                     $soli->status != 'Solicitado al Supervisor' &&
                                                     $soli->status != 'Enviado a Administración')
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                {{-- <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                                     class="w-6 h-6 text-gray-400">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
                                                         d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
-                                                </svg>
+                                                </svg> --}}
     
                                                 @if ($soli->status == 'Solicitado a Compras')
                                                     <button wire:click="envAdmin({{ $soli->id }})"
@@ -454,7 +454,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td class="w-full lg:w-auto p-3 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
+                            <td class="w-full lg:w-auto p-1 text-gray-800 text-center border border-b  block lg:table-cell relative lg:static"
                                 colspan="9">
                                 <span
                                     class="lg:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Sin

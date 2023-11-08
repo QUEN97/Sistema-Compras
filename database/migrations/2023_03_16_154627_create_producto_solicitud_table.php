@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('solicitud_id');
             $table->unsignedBigInteger('producto_id');
-            $table->unsignedBigInteger('proveedor_id');
+            $table->unsignedBigInteger('proveedor_id')->nullable();
             $table->unsignedBigInteger('cantidad');
             $table->float('total', 8, 2);
             $table->boolean('flag_trash')->default(0);

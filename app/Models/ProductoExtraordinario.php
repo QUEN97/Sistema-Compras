@@ -16,7 +16,7 @@ class ProductoExtraordinario extends Pivot
      * @var string[]
      */
     protected $fillable = [
-        'solicitud_id','tipo', 'producto_extraordinario', 'cantidad', 'total', 'flag_trash','proveedor_id'
+        'solicitud_id','tipo', 'producto_extraordinario', 'cantidad', 'total', 'flag_trash','proveedor_id','razon_social'
     ];
 
     public function getCreatedFormatAttribute()

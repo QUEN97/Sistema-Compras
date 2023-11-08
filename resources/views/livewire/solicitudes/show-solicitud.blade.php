@@ -38,7 +38,7 @@
                     <p class="text-sm  text-gray-600 dark:text-white">Archivo PDF:</p>
                     <p class="font-medium items-start text-red-500 dark:text-white">
                         <a class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-gray-800"
-                            download="{{ 'storage/solicitudes-pdfs/' . $this->pdf }}" href="#" target="_blank">
+                            href="{{ asset('storage/solicitudes-pdfs/' . $this->pdf) }}" download>
                             {{ $this->pdf }}
                             <span
                                 class="inline-flex items-center justify-center w-4 h-4 ml-2 text-xs font-semibold text-red-800 bg-red-200 rounded-full">
@@ -51,45 +51,45 @@
                         </a>
                     </p>
                 </div>
-                @if (Auth::user()->permiso_id==1 || Auth::user()->permiso_id==4)
-                <div class="flex flex-wrap gap-2 justify-center">
-                    <div
-                        class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                        <p class="text-sm text-gray-600 dark:text-white">Precio total:</p>
-                        @if ($solicitudes)
-                            <span class="text-base font-medium text-navy-700 dark:text-white">
-                                ${{ number_format((($solicitudes->total+$solicitudes->iva)-$solicitudes->isr), 2) }}
-                            </span>
-                        @endif
+                @if (Auth::user()->permiso_id == 1 || Auth::user()->permiso_id == 4)
+                    <div class="flex flex-wrap gap-2 justify-center">
+                        <div
+                            class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                            <p class="text-sm text-gray-600 dark:text-white">Precio total:</p>
+                            @if ($solicitudes)
+                                <span class="text-base font-medium text-navy-700 dark:text-white">
+                                    ${{ number_format($solicitudes->total + $solicitudes->iva - $solicitudes->isr, 2) }}
+                                </span>
+                            @endif
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                            <p class="text-sm text-gray-600 dark:text-white">Subtotal:</p>
+                            @if ($solicitudes)
+                                <span class="text-base font-medium text-navy-700 dark:text-white">
+                                    ${{ number_format($solicitudes->total, 2) }}
+                                </span>
+                            @endif
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                            <p class="text-sm text-gray-600 dark:text-white">IVA:</p>
+                            @if ($solicitudes)
+                                <span class="text-base font-medium text-navy-700 dark:text-white">
+                                    ${{ number_format($solicitudes->iva, 2) }}
+                                </span>
+                            @endif
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
+                            <p class="text-sm text-gray-600 dark:text-white">ISR:</p>
+                            @if ($solicitudes)
+                                <span class="text-base font-medium text-navy-700 dark:text-white">
+                                    ${{ number_format($solicitudes->isr, 2) }}
+                                </span>
+                            @endif
+                        </div>
                     </div>
-                    <div
-                    class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                        <p class="text-sm text-gray-600 dark:text-white">Subtotal:</p>
-                        @if ($solicitudes)
-                            <span class="text-base font-medium text-navy-700 dark:text-white">
-                                ${{ number_format($solicitudes->total, 2) }}
-                            </span>
-                        @endif
-                    </div>
-                    <div
-                        class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                        <p class="text-sm text-gray-600 dark:text-white">IVA:</p>
-                        @if ($solicitudes)
-                            <span class="text-base font-medium text-navy-700 dark:text-white">
-                                ${{ number_format($solicitudes->iva, 2) }}
-                            </span>
-                        @endif
-                    </div>
-                    <div
-                        class="flex flex-col items-center justify-center rounded-2xl  bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                        <p class="text-sm text-gray-600 dark:text-white">ISR:</p>
-                        @if ($solicitudes)
-                            <span class="text-base font-medium text-navy-700 dark:text-white">
-                                ${{ number_format(($solicitudes->isr), 2) }}
-                            </span>
-                        @endif
-                    </div>
-                </div>
                 @endif
 
                 @if ($observaciones)
@@ -255,7 +255,7 @@
                             </table>
                         </details>
                     </div>
-				@if ($solicitudes->evidencias->count() > 0)
+                    @if ($solicitudes->evidencias->count() > 0)
                         <br>
                         <div class="border rounded-lg w-full overflow-hidden max-h-[320px] overflow-y-auto">
                             <details>
@@ -264,39 +264,60 @@
                                 </summary>
                                 <div class="border w-full flex flex-wrap gap-2 p-1">
                                     @foreach ($solicitudes->evidencias as $antigArch)
-                                    <div class="p-3 relative max-w-[16rem] border rounded-md shadow-md dark:bg-slate-700 dark:border-slate-700">
-                                        @if ($antigArch->mime_type == "image/png" || $antigArch->mime_type == "image/jpg" || $antigArch->mime_type == "image/jpeg" 
-                                                                || $antigArch->mime_type == "image/webp")
-                                            <a href="{{ asset('storage/'.$antigArch->archivo_path) }}" target="_blank" data-lightbox="imagenes-edit-{{ $antigArch->repuesto_id }}" data-title="{{ $antigArch->nombre_archivo }}"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Visualizar" class="text-xs">
-                                                <figure class="d-inline-block max-w-[160px]" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Presione para visualizar" data-bs-placement="top">
-                                                    <img class="w-full" src="{{ asset('storage/'.$antigArch->archivo_path) }}">
-                                                    <p class="break-all">{{ $antigArch->nombre_archivo }}</p>
-                                                </figure>
-                                            </a>
-                                        @elseif ($antigArch->mime_type == "application/pdf")
-                                            <a href="{{ asset('storage/'.$antigArch->archivo_path) }}" target="_blank"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Visualizar" class="text-xs">
-                                                <figure class="d-inline-block max-w-[160px]" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Presione para descargar" data-bs-placement="top">
-                                                    <img class="w-100" src="{{ asset('img/icons/pdf.png') }}">
-                                                    <p class="break-all"> {{ $antigArch->nombre_archivo }} </p>
-                                                </figure>
-                                            </a>
-                                        @elseif ($antigArch->mime_type == "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-                                            <a  href="{{ asset('storage/'.$antigArch->archivo_path) }}" target="_blank"
-                                                data-bs-toggle="tooltip" data-bs-placement="top" title="Visualizar" class="text-xs">
-                                                <figure class="d-inline-block max-w-[160px]" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Presione para descargar" data-bs-placement="top">
-                                                    <img class="w-100" src="{{ asset('img/icons/word-2019.svg') }}">
-                                                    <p class="break-all"> {{ $antigArch->nombre_archivo }} </p>
-                                                </figure>
-                                            </a>
-                                        @endif
-                                    </div>
+                                        <div
+                                            class="p-3 relative max-w-[16rem] border rounded-md shadow-md dark:bg-slate-700 dark:border-slate-700">
+                                            @if (
+                                                $antigArch->mime_type == 'image/png' ||
+                                                    $antigArch->mime_type == 'image/jpg' ||
+                                                    $antigArch->mime_type == 'image/jpeg' ||
+                                                    $antigArch->mime_type == 'image/webp')
+                                                <a href="{{ asset('storage/' . $antigArch->archivo_path) }}"
+                                                    target="_blank"
+                                                    data-lightbox="imagenes-edit-{{ $antigArch->repuesto_id }}"
+                                                    data-title="{{ $antigArch->nombre_archivo }}"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Visualizar" class="text-xs">
+                                                    <figure class="d-inline-block max-w-[160px]" tabindex="0"
+                                                        data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                        data-bs-content="Presione para visualizar"
+                                                        data-bs-placement="top">
+                                                        <img class="w-full"
+                                                            src="{{ asset('storage/' . $antigArch->archivo_path) }}">
+                                                        <p class="break-all">{{ $antigArch->nombre_archivo }}</p>
+                                                    </figure>
+                                                </a>
+                                            @elseif ($antigArch->mime_type == 'application/pdf')
+                                                <a href="{{ asset('storage/' . $antigArch->archivo_path) }}"
+                                                    target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Visualizar" class="text-xs">
+                                                    <figure class="d-inline-block max-w-[160px]" tabindex="0"
+                                                        data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                        data-bs-content="Presione para descargar"
+                                                        data-bs-placement="top">
+                                                        <img class="w-100" src="{{ asset('img/icons/pdf.png') }}">
+                                                        <p class="break-all"> {{ $antigArch->nombre_archivo }} </p>
+                                                    </figure>
+                                                </a>
+                                            @elseif ($antigArch->mime_type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+                                                <a href="{{ asset('storage/' . $antigArch->archivo_path) }}"
+                                                    target="_blank" data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Visualizar" class="text-xs">
+                                                    <figure class="d-inline-block max-w-[160px]" tabindex="0"
+                                                        data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                                        data-bs-content="Presione para descargar"
+                                                        data-bs-placement="top">
+                                                        <img class="w-100"
+                                                            src="{{ asset('img/icons/word-2019.svg') }}">
+                                                        <p class="break-all"> {{ $antigArch->nombre_archivo }} </p>
+                                                    </figure>
+                                                </a>
+                                            @endif
+                                        </div>
                                     @endforeach
                                 </div>
                             </details>
                         </div>
-                    @endif 
+                    @endif
                 @endif
             </div>
         </x-slot>

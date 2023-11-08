@@ -16,7 +16,7 @@ class ProductoSolicitud extends Pivot
      * @var string[]
      */
     protected $fillable = [
-        'solicitud_id', 'producto_id','proveedor_id', 'cantidad', 'total', 'flag_trash',
+        'solicitud_id', 'producto_id', 'cantidad', 'total', 'flag_trash','proveedor_id','razon_social'
     ];
 
     public function getCreatedFormatAttribute()

@@ -49,7 +49,7 @@ class SolicitudCreate extends Component
     {
         if (Auth::user()->permiso_id == 3) {
             $this->estacion = Estacion::where('user_id', Auth::user()->id)->first()->id;
-        }
+            }
         $this->validate(
             [
                 'cantidad.1' => ['required', 'integer', 'numeric', 'min:0'],

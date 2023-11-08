@@ -35,6 +35,7 @@
 
         .isSecondTable {
             width: 300px;
+            border: 2px solid #CC0000;
         }
 
         .isRed {
@@ -77,14 +78,16 @@
             border: 2px solid #CC0000;
             font-weight: bold;
         }
-        .motivo{
+
+        .motivo {
             margin: 4px;
             padding: 4px;
             font-size: 12px;
             border: 2px solid #CC0000;
             font-weight: bold;
         }
-        .motiv{
+
+        .motiv {
             background-color: #CC0000;
             color: #fff;
             padding: 2px;
@@ -93,7 +96,6 @@
 </head>
 
 <body>
-
     <table style="width: 100%">
         <thead>
             <tr>
@@ -102,8 +104,13 @@
                 </th>
                 <th class="text-left text-dark">
                     <h4>
-                        {{ __('Requisición de Compras') }}
+                        {{ __('REQUISICIÓN DE COMPRAS') }}
                     </h4>
+                    @if (isset($razonsocial))
+                        <h5>
+                            {{ __('Razón Social: ') }} {{ $razonsocial }}
+                        </h5>
+                    @endif
                 </th>
                 <th class="text-right text-dark">
                     {{ date('d-m-Y') }}
@@ -170,7 +177,65 @@
             </table>
         </div>
 
-        <div class="grid-item">
+        @if (isset($proveedor))
+            <div class="grid-item">
+                {{ __('PROVEEDOR:') }}
+                <table class="isSecondTable table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="isRed">
+                                {{ __('Razón Social:') }}
+                            </td>
+                            <td class="text-center text-sm text-dark">
+                                {{ $proveedor->titulo_proveedor }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="isRed">
+                                {{ __('RFC:') }}
+                            </td>
+                            <td class="text-center text-dark">
+                                {{ $proveedor->rfc_proveedor }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="isRed">
+                                {{ __('Condiciones de Pago:') }}
+                            </td>
+                            <td class="text-center text-dark">
+                                {{ $proveedor->condicion_pago }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="isRed">
+                                {{ __('Banco:') }}
+                            </td>
+                            <td class="text-center text-dark">
+                                {{ $proveedor->banco }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="isRed">
+                                {{ __('Clabe:') }}
+                            </td>
+                            <td class="text-center text-dark">
+                                {{ $proveedor->clabe }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="isRed">
+                                {{ __('Cuenta') }}
+                            </td>
+                            <td class="text-center text-dark">
+                                {{ $proveedor->cuenta }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        @endif
+
+        {{-- <div class="grid-item">
             <table class="isSecondTable">
                 <tbody>
                     <tr>
@@ -181,7 +246,7 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div> --}}
     </div>
 
     <div class="table-responsive">
@@ -234,7 +299,7 @@
 
     <div>
         <label for="motivo" class="motiv">Motivo de la solicitud</label>
-        <textarea name="motivo" class="motivo" cols="30" rows="10">{{$motivo}}</textarea>
+        <textarea name="motivo" class="motivo" cols="30" rows="10">{{ $motivo }}</textarea>
     </div>
 
     <br>
@@ -242,14 +307,14 @@
     <div>
         <label for="motivo" class=" motiv">Monto total de la solicitud</label>
         <div class="input-group mt-3">
-          <p><b>Subtotal: </b>${{$totalSoli}}</p>
-            <p><b>IVA: </b>${{$iva}}</p>
-            <p><b>ISR: </b>${{$isr}}</p>
-            <p><b>Total:</b>$ {{number_format($total,2)}}</p>
-         </div>
+            <p><b>Subtotal: </b>${{ $totalSoli }}</p>
+            <p><b>IVA: </b>${{ $iva }}</p>
+            <p><b>ISR: </b>${{ $isr }}</p>
+            <p><b>Total:</b>$ {{ number_format($total, 2) }}</p>
+        </div>
     </div>
 
-    <br> 
+    <br>
 
     <div>
         <img src="{{ public_path('img/logo/FullPower.png') }}" alt="" style="width: 100%;">
